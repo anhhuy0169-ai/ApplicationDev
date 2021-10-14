@@ -1,0 +1,48 @@
+﻿@model ApplicationDev.ViewModel.TrainerUserViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(tp => tp.TrainerUsers.TrainerID)
+        @Html.DropDownListFor(tp => tp.TrainerUsers.TrainerID, new SelectList(Model.Trainers, "ID", "UserName"), "", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(tp => tp.TrainerUsers.Full_Name)
+        @Html.TextBoxFor(tp => tp.TrainerUsers.Full_Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(tp => tp.TrainerUsers.Full_Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(tp => tp.TrainerUsers.Email)
+        @Html.TextBoxFor(tp => tp.TrainerUsers.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(tp => tp.TrainerUsers.Email)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(tp => tp.TrainerUsers.Specialty)
+        @Html.TextBoxFor(tp => tp.TrainerUsers.Specialty, new { @class = "form-control" })
+        @Html.ValidationMessageFor(tp => tp.TrainerUsers.Specialty)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(tp => tp.TrainerUsers.Address)
+        @Html.TextBoxFor(tp => tp.TrainerUsers.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(tp => tp.TrainerUsers.Address)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(tp => tp.TrainerUsers.Age)
+        @Html.TextBoxFor(tp => tp.TrainerUsers.Age, new { @class = "form-control" })
+        @Html.ValidationMessageFor(tp => tp.TrainerUsers.Age)
+    </div>
+
+    <button type="submit" class="btn btn-default">Add</button>
+    @Html.ActionLink("Back to List", "Index")
+}
+
+

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ApplicationDev.Models.Trainer>
+@using ApplicationDev.Utils;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Profile Trainer</h2>
+@if (Request.IsAuthenticated && User.IsInRole(Role.Manager))
+{
+    @Html.ActionLink("Add Trainer Profile", "Create")
+
+
+    <table class="table">
+        <tr>
+
+            <th>Email</th>
+            <th>UserName</th>
+            <th>FullName</th>
+            <th>Address</th>
+            <th>Age</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+
+        </tr>
+        @foreach (var trainer in Model)
+        {
+            <tr>
+
+                <th>@trainer.Trainers.Email</th>
+                <th>@trainer.Trainers.UserName</th>
+                <th>@trainer.Full_Name</th>
+                <th>@trainer.Address</th>
+                <th>@trainer.Age</th>
+                <th>@Html.ActionLink("Edit", "Edit", new { id = trainer.ID })</th>
+                <th>@Html.ActionLink("Delete", "Delete", new { id = trainer.ID })</th>
+            </tr>
+        }
+    </table>
+}
+@if (User.IsInRole(Role.Trainer))
+        {
+    <table class="table">
+        <tr>
+            <th>FullName</th>
+            <th>Address</th>
+            <th>Age</th>
+            <th>Edit</th>
+
+        </tr>
+        @foreach (var trainer in Model)
+    {
+            <tr>
+                <th>@trainer.Full_Name</th>
+                <th>@trainer.Address</th>
+                <th>@trainer.Age</th>
+                <th>@Html.ActionLink("Edit", "Edit", new { id = trainer.ID })</th>
+            </tr>
+        }
+    </table>
+}
+
+@Html.ActionLink("Back to home", "Index", "Home")

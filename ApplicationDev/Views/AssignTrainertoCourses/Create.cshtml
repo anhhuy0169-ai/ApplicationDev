@@ -1,0 +1,27 @@
+﻿@model ApplicationDev.ViewModel.AssignTrainertoCourseViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(tr => tr.AssignTrainertoCourse.Trainer.Email)
+        @Html.DropDownListFor(tr => tr.AssignTrainertoCourse.TrainerID, new SelectList(Model.Trainers, "ID", "Email"), "", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(tr => tr.AssignTrainertoCourse.Course.Name)
+        @Html.DropDownListFor(tr => tr.AssignTrainertoCourse.CourseID, new SelectList(Model.Courses, "ID", "Name"), "", new { @class = "form-control" })
+
+    </div>
+
+    <button type="submit" class="btn btn-default">Assign</button>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
